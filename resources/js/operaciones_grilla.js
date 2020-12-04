@@ -89,6 +89,8 @@ import { modalClose, modalUrlClose, programmingPencil } from "./store/eventos/ev
 
 import { getProgramacion, getHome } from './store/getters'
 
+var mId;
+
 function eventsGrilla() {
     const baseURL = "http://www.claronetworks.openofficedospuntocero.info/v1.2/";
 
@@ -234,6 +236,8 @@ function eventsGrilla() {
         getHeaderLanding();
     });
 
+
+
     let LandingHomeCinema = {
         remote: `${baseURL}home-edi-cinema.php`,
         container: document.getElementById("navbar-prev-home-cinema"),
@@ -243,7 +247,8 @@ function eventsGrilla() {
             if (typeof json == "object") {
                 switch (json.type) {
                     case "slider-pagination":
-                        landingView.renderHomeBanner();
+                        $("body").append(LOADER);
+                        getHome()
                         break;
                     case "home-claro-carrousel-main":
                         let date = new Date();
@@ -648,6 +653,7 @@ function eventsGrilla() {
                     </div>`
                 );
                 let id = $(this).attr("chapter_id");
+                mId = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
                 $(".device-size").load("imports #device-size-edit");
             }
@@ -675,6 +681,32 @@ function eventsGrilla() {
         );
     }
 
+    // $("#banner-sinopsis-modal-button").on('click', function () {
+    //     $("#sinopsis-container iframe").remove();
+    //     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    //     programView.renderSynopsis(mId, socketSynopsis);
+    // })
+    // $("#upload-image-synopsis").on('click', function () {
+    //     $("#sinopsis-container iframe").remove();
+    //     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    //     programView.renderSynopsis(mId, socketSynopsis);
+    // })
+    // $("#edit-synopsis-modal-button").on('click', function () {
+    //     $("#sinopsis-container iframe").remove();
+    //     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    //     programView.renderSynopsis(mId, socketSynopsis);
+    // })
+    // $("#images-synopsis-modal-button").on('click', function () {
+    //     $("#sinopsis-container iframe").remove();
+    //     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    //     programView.renderSynopsis(mId, socketSynopsis);
+    // })
+    // $("#details-synopsis-modal-button").on('click', function () {
+    //     $("#sinopsis-container iframe").remove();
+    //     var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
+    //     programView.renderSynopsis(mId, socketSynopsis);
+    // })
+
     if (navbarPrevSINOPSIS) {
         $("#sinopsis-container iframe").remove();
         var socketSynopsis = new easyXDM.Socket(LandingSinopsis);
@@ -688,6 +720,7 @@ function eventsGrilla() {
                     </div>`
                 );
                 let id = $(this).attr("chapter_id");
+                mId = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
             }
         );
@@ -726,6 +759,7 @@ function eventsGrilla() {
                     </div>`
                 );
                 let id = $(this).attr("chapter_id");
+                mId = $(this).attr("chapter_id");
                 programView.renderSynopsis(id, socketSynopsis);
             }
         );
@@ -5205,7 +5239,8 @@ function eventsGrilla() {
             if (typeof json == "object") {
                 switch (json.type) {
                     case "slider-pagination":
-                        landingView.renderHomeBanner();
+                        $("body").append(LOADER);
+                        getHome()
                         break;
                     case "home-claro-carrousel-main":
                         let date = new Date();

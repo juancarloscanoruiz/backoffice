@@ -527,12 +527,10 @@ export default class LandingView {
     `);
         });
 
-        setTimeout(function () {
-            //Mostramos el modal
-            $(".modal-home-encabezado").modal("show");
-            //Eliminamos
-            $(".loader-view-container").remove();
-        }, 500);
+        //Mostramos el modal
+        $(".modal-home-encabezado").modal("show");
+        //Eliminamos
+        $(".loader-view-container").remove();
     }
 
     addImageToHomeBanner() {

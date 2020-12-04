@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import { claroCinemaProgramacion, canalClaroHome } from '../index'
+import { claroCinemaProgramacion, canalClaroHome, concertChannelHome, claroCinemaHome } from '../index'
 
 function setImgCarruselHome(data) {
     $.ajax({
@@ -52,11 +52,19 @@ function setBannerHome(data, landing) {
                     $('.modal').modal('hide');
                     $(".loader-view-container").remove();
                     break;
-                case "admin":
+                case "concert-channel":
+                    $("#navbar-prev-home-concert iframe").remove();
+                    concertChannelHome()
+                    $('.modal').modal('hide');
+                    $(".loader-view-container").remove();
                     break;
                 case "claro-cinema":
+                    $("#navbar-prev-home-cinema iframe").remove();
+                    claroCinemaHome()
+                    $('.modal').modal('hide');
+                    $(".loader-view-container").remove();
                     break;
-                case "concert-channel":
+                case "admin":
                     break;
                 default:
                     break;

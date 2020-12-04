@@ -1,8 +1,11 @@
 import $ from "jquery";
 import "bootstrap";
 
-import { getChapterInfo, getProgrammingLanding, getCarruselHome } from "./services/landing.js";
+import { getChapterInfo, getProgrammingLanding, getCarruselHome, getSynopsis, } from "./services/landing.js";
 import { addImagesModalIcons } from "./services/generalSchedule.js";
+
+import ProgramView from "./views/program.js";
+let programView = new ProgramView();
 import LandingView from "./views/landing";
 let landingView = new LandingView();
 
@@ -84,6 +87,80 @@ function canalClaroHome() {
     };
     new easyXDM.Socket(home);
 }
+function concertChannelHome() {
+    let home = {
+        remote: URLBASE + 'home-edi-concert.php',
+        container: document.getElementById("navbar-prev-home-concert"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(LOADER);
+                        getHome()
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "concert-channel");
+                        break;
+                    case "concert-home-header":
+                        landingView.renderHomeHeaderConcertChannel();
+                        break;
+                    case "concert-home-slider":
+                        let landing = "Concert Channel";
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    new easyXDM.Socket(home);
+}
+function claroCinemaHome() {
+    let home = {
+        remote: URLBASE + 'home-edi-cinema.php',
+        container: document.getElementById("navbar-prev-home-cinema"),
+        onMessage: function (message, origin) {
+            let json = JSON.parse(message);
+            if (typeof json == "object") {
+                switch (json.type) {
+                    case "slider-pagination":
+                        $("body").append(LOADER);
+                        getHome()
+                        break;
+                    case "home-claro-carrousel-main":
+                        let date = new Date();
+                        let day = ("0" + date.getUTCDate()).slice(-2);
+                        let month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+                        let year = date.getUTCFullYear();
+                        let currentDate = `${year}-${month}-${day}`;
+                        getProgrammingLanding(currentDate, "claro-cinema");
+                        break;
+                    case "cinema-home-header":
+                        getContentHomeHeaderCinema();
+                        break;
+                    case "cinema-home-slider":
+                        let landing = "Claro Cinema";
+                        getCarruselHome(landing);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+            this.container.getElementsByTagName("iframe")[0].style.boxShadow = "rgba(0, 0, 0, 0.5) -1px -1px 17px 9px";
+        }
+    };
+    new easyXDM.Socket(home);
+}
 // HOME
 
-export { claroCinemaProgramacion, canalClaroHome }
+export { claroCinemaProgramacion, canalClaroHome, concertChannelHome, claroCinemaHome }

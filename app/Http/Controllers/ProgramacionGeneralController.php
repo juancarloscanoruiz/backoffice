@@ -371,7 +371,7 @@ class ProgramacionGeneralController extends Controller
                         'landing_id' => $data->landing_id,
                         'day' => $fecha_del_documento,
                         'version_id' => $data->version_id,
-                        "programas"=>$programas
+                        "programas" => $programas
                     ]
                 )]
             );
@@ -456,7 +456,7 @@ class ProgramacionGeneralController extends Controller
     {
         $client = new Client();
         $response = $client->get(
-            $this->url . "program/deleteProgramationTemporal/".$request->version_id
+            $this->url . "program/deleteProgramationTemporal/" . $request->version_id
         );
         $respuesta =  json_decode($response->getBody());
 
@@ -916,7 +916,6 @@ class ProgramacionGeneralController extends Controller
         if ($respuesta->code == 200) {
 
             return redirect()->route('programacion_general_id', ['id' => $chapterId]);
-
         }
     }
 

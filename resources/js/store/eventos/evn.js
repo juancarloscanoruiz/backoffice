@@ -92,4 +92,11 @@ function programmingPencil() {
     })
 }
 
-export { previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar, programmingPencil }
+
+function closeChafa() {
+    $('#close_modals').on('click', function () {
+        $('.modal').modal('hide')
+    })
+}
+
+export { previewImage, modalUrl, modalClose, modalUrlClose, dateCalendar, programmingPencil, closeChafa }

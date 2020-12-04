@@ -1,10 +1,15 @@
 import $ from "jquery";
 
+import LandingView from "../views/landing";
+let landingView = new LandingView();
+
 import { slickShowArrow } from './slick/slick'
-import { previewImage, modalClose, dateCalendar } from './eventos/evn'
+import { previewImage, modalClose, dateCalendar, closeChafa } from './eventos/evn'
 import { setBanner, setHomeBanner } from './methods'
 
-var varSetHomeBanner = 1;
+var varSetHomeBanner;
+let landing;
+let lang;
 
 function getBanner(res, id, id_slide) {
     let slider = "";
@@ -52,6 +57,9 @@ function getBanner(res, id, id_slide) {
 
 function getHomeBanner(res) {
     if (res.code == 200) {
+        let count = 1;
+        let imagesMobile = [];
+
         res = res.data
 
         $(".input-title-home").val(res.block_1_title)
@@ -70,10 +78,30 @@ function getHomeBanner(res) {
             }
         }
 
+        while (true) {
+            if (res[`block_1_image_background_${count}`]) {
+                imagesMobile.push(res[`block_1_image_background_${count}`]);
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        landing = $(".modal-home-encabezado").attr("landing");
+
+        if (landing != lang) {
+            varSetHomeBanner = 1
+        }
+
         if (varSetHomeBanner == 1) {
-            setHomeBanner()
+            lang = landing
+            setHomeBanner(landing)
             varSetHomeBanner++
         }
+
+        landingView.renderHomeMobile(imagesMobile)
+        landingView.renderHomePC(res.block_1_title, res.block_1_subtitle, res.block_1_video_name);
+        closeChafa()
 
         $(".modal-home-encabezado").modal("show");
         $(".loader-view-container").remove();

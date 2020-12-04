@@ -41,11 +41,9 @@ function setBanner(id) {
     })
 }
 
-function setHomeBanner() {
-    console.log('llega 1 vez');
+function setHomeBanner(landing) {
     $(".modal-home-encabezado").on("click", "#edit-home-encabezado", function () {
         $("body").append(LOADER);
-        let landing = $(".modal-home-encabezado").attr("landing");
 
         let videoimage = document.getElementById("video-promo-header-home").files[0] || "";
         let title = $(".modal-home-encabezado .header-title-1").val() || "";
